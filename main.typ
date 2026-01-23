@@ -24,7 +24,6 @@
   toc: true,
 )
 
-#include "content/ccache.typ"
 #include "content/debug.typ"
 #include "content/quick-hacks.typ"
 #include "content/pl-env.typ"
