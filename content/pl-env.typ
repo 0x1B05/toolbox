@@ -54,3 +54,21 @@ sudo pacman -S uv
   | *同步依赖* | `uv sync` | 严格根据 `uv.lock` 文件同步本地环境 |
   | *一键清理* | `uv cache clean` | 清理 uv 的全局缓存以节省空间 |
 ]
+
+== chisel
+
+```
+paru -S mill coursier-bin
+```
+
+```
+git clone https://github.com/OSCPU/chisel-playground
+cd chisel-playground
+make test
+make verilog
+```
+
+```
+nvim .
+:MetalsInstall
+```
