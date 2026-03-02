@@ -130,7 +130,6 @@ normal下，`<C-o>` go backward jumplist，`<C-i>` go forward jumplist
   `:cdo s/<origin>/<subsitution>/gc` 这里`c` for confirm
 ]
 
-
 == pacman
 
 - `sudo paccache -r` : 保留最近 3 个版本缓存
@@ -178,3 +177,30 @@ sed -i 's|#import "../template.typ": \*|#import "@local/notes:0.1.0": \*|g; s|#t
 == docker
 
 == ccache
+
+== proxy
+
+```
+x ss -tlnp
+State   Recv-Q  Send-Q    Local Address:Port      Peer Address:Port  Process
+LISTEN  0       4096            0.0.0.0:5355           0.0.0.0:*
+LISTEN  0       4096         127.0.0.54:53             0.0.0.0:*
+LISTEN  0       4096          127.0.0.1:52345          0.0.0.0:*
+LISTEN  0       4096          127.0.0.1:20172          0.0.0.0:*
+LISTEN  0       4096          127.0.0.1:20171          0.0.0.0:*
+LISTEN  0       4096          127.0.0.1:20170          0.0.0.0:*
+LISTEN  0       4096      127.0.0.53%lo:53             0.0.0.0:*
+LISTEN  0       4096          127.0.0.1:42229          0.0.0.0:*
+LISTEN  0       4096               [::]:5355              [::]:*
+LISTEN  0       4096                  *:2017                 *:*
+```
+
+```
+> curl -x socks5h://127.0.0.1:20170 -I https://github.com
+HTTP/2 200
+...
+```
+
+```
+ProxyCommand nc -X 5 -x 127.0.0.1:20170 %h %p
+```
