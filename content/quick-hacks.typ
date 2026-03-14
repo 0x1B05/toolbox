@@ -6,6 +6,49 @@
 
 - ncdu: 查看磁盘使用情况。`ncdu /`
 
+== nm
+
+`nm [选项] [目标文件]` 是一个用于列出目标文件（Object Files）中符号（Symbols）的工具。它在分析二进制文件结构、解决链接错误及调试程序时非常有用。
+
+=== 常用选项
+
+- `-A` 或 `--print-file-name`: 在每个符号前显示所属的文件名。
+- `-C` 或 `--demangle`: 将 C++ 的符号名称（Mangling）还原为可读形式。
+- `-D` 或 `--dynamic`: 显示动态符号，通常用于共享库。
+- `-g` 或 `--extern-only`: 仅显示外部符号（全局符号）。
+- `-n` 或 `--numeric-sort`: 按地址而不是按名称排序。
+- `-u` 或 `--undefined-only`: 仅显示未定义的符号（即该文件引用了但未在该文件中定义的符号）。
+- `-f [格式]`: 指定输出格式（如 `sysv`, `bsd` 或 `posix`）。
+
+=== 常见输出字符含义
+
+在 `nm` 的输出中，字符代表了符号的类型：
+
+- `T`: 符号位于代码段（Text section）。
+- `D`: 符号位于已初始化的数据段（Data section）。
+- `B`: 符号位于未初始化的数据段（BSS section）。
+- `U`: 符号未定义（Undefined），通常表示该符号在其他库中。
+- `W`: 弱符号（Weak symbol），如果链接时找不到定义，也不会报错。
+
+=== 使用示例
+
+1. 列出目标文件中的所有符号：
+  `nm main.o`
+2. 查看可执行文件中的动态符号：
+  `nm -D my_program`
+3. 快速查找程序未定义的函数引用：
+  `nm -u my_program`
+4. 解析 C++ 符号并按地址排序：
+  `nm -Cn my_program`
+
+=== 调试技巧
+
+当遇到 "undefined reference" 链接错误时，可以使用 `nm -u` 配合 `grep` 快速定位：
+
+`nm -u my_program | grep symbol_name`
+
+如果结果显示 `U`，说明该文件确实依赖于该符号，你需要检查是否链接了相应的库文件。
+
 == vim
 
 === Very Magic Mode
