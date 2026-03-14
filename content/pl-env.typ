@@ -72,3 +72,9 @@ make verilog
 nvim .
 :MetalsInstall
 ```
+
+#tip-box(title: "网络环境可以换代理")[
+  ```
+  export COURSIER_REPOSITORIES="central|sonatype:releases|https://maven.aliyun.com/repository/public"
+  ```
+]

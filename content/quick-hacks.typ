@@ -130,6 +130,13 @@ normal下，`<C-o>` go backward jumplist，`<C-i>` go forward jumplist
   `:cdo s/<origin>/<subsitution>/gc` 这里`c` for confirm
 ]
 
+==== 删除
+
+全局删除带有`putch`的行
+```
+:g/putch/d
+```
+
 == pacman
 
 - `sudo paccache -r` : 保留最近 3 个版本缓存
