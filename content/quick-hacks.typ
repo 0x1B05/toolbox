@@ -81,7 +81,7 @@
   - *相比分组的优势*：如果用分组，得写成 `:%s/\v(http\S+)/`\1`/g`。用 `&` 省去了打括号的麻烦。
 ]
 
-==== 搜索
+=== 搜索
 
 - `/xxx` 向下搜索`xxx`，`?xxx` 向上搜索`xxx`
 - `#` 向上搜索当前光标所在单词，`*`向下搜索光标所在单词（全字匹配）
@@ -120,6 +120,21 @@ echo &{option} => 计算表达式并打印
 ```
 
 调出所有的命令历史，normal模式下`q:`
+
+==== 转义很麻烦？
+
+Vim 允许改变命令的“界定符”。实际上，`s/` (substitute) 中的 `/` 只是一个习惯用法。
+
+你可以使用任何非字母数字的字符作为分隔符，例如 `|`、`#` 或 `+`，甚至是`,`。
+
+- 示例：要把 `/usr/local/bin` 替换为 `/opt/bin`：
+- 常规写法（需要转义）：`:s/\/usr\/local\/bin/\/opt\/bin/g`
+- 更优雅写法（无需转义）：`:s|/usr/local/bin|/opt/bin|g`
+
+
+#tip-box(title: "适用场景")[
+  只要是用冒号 `:` 开头的命令（如 `s`, `g`, `v`），都可以更换分隔符。
+]
 
 ==== Insert new lines without hitting Enter
 
@@ -176,6 +191,7 @@ normal下，`<C-o>` go backward jumplist，`<C-i>` go forward jumplist
 ==== 删除
 
 全局删除带有`putch`的行
+
 ```
 :g/putch/d
 ```
