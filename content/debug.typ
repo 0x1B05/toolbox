@@ -523,3 +523,35 @@ shelll ls -l /proc/xxx/fd
 查看当前makefile include了哪些makefile
 - `$(info Makefiles included: $(MAKEFILE_LIST))`
 - `make -p | grep "MAKEFILE_LIST"`
+
+== 性能分析
+
+=== Python - cProfile
+
+```
+uv run python -m cProfile -o /tmp/bpe.prof -m pytest tests/test_train_bpe.py -q
+uv run python -m cProfile -o /tmp/bpe.prof -m pytest tests/test_train_bpe.py::某个测试名 -q
+uv run python -m pstats /tmp/bpe.prof
+/tmp/bpe.prof% sort cumtime
+/tmp/bpe.prof% stats 30
+...
+/tmp/bpe.prof% stats cs336_basics
+Sat Jun  6 15:18:05 2026    /tmp/bpe.prof
+
+         176865376 function calls (176824102 primitive calls) in 67.567 seconds
+
+   Ordered by: cumulative time
+   List reduced from 6597 to 8 due to restriction <'cs336_basics'>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        3    0.739    0.246   64.385   21.462 /home/0x1b05/workspace/cs336/assignments/assignment1-basics/cs336_basics/bpe.py:50(train_bpe)
+     1229   23.602    0.019   38.220    0.031 /home/0x1b05/workspace/cs336/assignments/assignment1-basics/cs336_basics/bpe.py:32(apply_merge)
+     1229   12.241    0.010   18.520    0.015 /home/0x1b05/workspace/cs336/assignments/assignment1-basics/cs336_basics/bpe.py:22(count_pair_fr
+eq)
+        3    2.910    0.970    5.295    1.765 /home/0x1b05/workspace/cs336/assignments/assignment1-basics/cs336_basics/bpe.py:6(count_pretoken
+s)
+  6743640    1.422    0.000    1.422    0.000 /home/0x1b05/workspace/cs336/assignments/assignment1-basics/cs336_basics/bpe.py:17(<genexpr>)
+  5341366    0.641    0.000    0.641    0.000 /home/0x1b05/workspace/cs336/assignments/assignment1-basics/cs336_basics/bpe.py:70(<lambda>)
+        1    0.000    0.000    0.014    0.014 /home/0x1b05/workspace/cs336/assignments/assignment1-basics/cs336_basics/bpe.py:1(<module>)
+        1    0.000    0.000    0.001    0.001 /home/0x1b05/workspace/cs336/assignments/assignment1-basics/cs336_basics/__init__.py:1(<module>)
+```
