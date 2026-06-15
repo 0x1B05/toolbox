@@ -128,7 +128,7 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
 - `nexti`/`ni`: 执行下一行源代码中的第一条汇编（`disassemble`查看汇编）仍跳过函数调用
 - `stepi`/`si`: 执行下一行源代码中的第一条汇编（`disassemble`查看汇编）仍进入函数调用
 
-#tip-box(title: "硬件观察点 vs. 软件观察点")[
+#tip-block(title: "硬件观察点 vs. 软件观察点")[
   - 硬件观察点：硬件直接执行（执行效率非常高，但是数量受限）
   - 软件观察点：软件通过中断执行
 ]
@@ -155,7 +155,7 @@ break *<内存地址>
 rb <模糊函数名> // 正则匹配
 ```
 
-#tip-box(title: "Tip")[
+#tip-block(title: "Tip")[
   - 如果函数名有重合的话，可以`b <重合部分>`然后回车，就可以看到相关联的所有函数。
   - `d`单个命令是删除所有断点
   - tab可以补全
@@ -217,7 +217,7 @@ end
   >end
   ```
 
-  #tip-box(title: "Tip")[
+  #tip-block(title: "Tip")[
     `commands`不加编号就是默认最近打的断点。
   ]
 ]
@@ -246,7 +246,7 @@ show args # 打印参数列表
 set args 123 abc "1 b 2 d"
 ```
 
-#tip-box(title: "Tip")[
+#tip-block(title: "Tip")[
   - gdb命令行里面`r arg1 ...`可以保持断点等gdb调试信息，换一套`args`调试。
   - gdb命令行里面`r arg1 ...`之后，再次`r`不加任何入参也会沿用前一次的入参。
 ]
@@ -265,7 +265,7 @@ set args 123 abc "1 b 2 d"
 - `info frame`/`i frame`: 查看当前栈帧信息
 - `frame <frame_number>`：切换到指定的堆栈帧（例如 `frame 2`）。
 
-#tip-box(title: "Tip")[ `i line <num>`可以查看具体某行代码的信息。 ]
+#tip-block(title: "Tip")[ `i line <num>`可以查看具体某行代码的信息。 ]
 
 == 打印
 
@@ -359,13 +359,13 @@ ptype /o <类型名/变量名> # 显示类型的内存布局
 - `tui enable`(重新打开，而是打开刚刚关闭的)
 - `<Ctrl+x+a>`快捷切换tui模式
 
-#tip-box(title: "Tip")[
+#tip-block(title: "Tip")[
   - 按↑↓只会在focus的窗口中移动，`fs cmd`可以聚焦到命令行窗口，就可以切换命令历史了
 ]
 
 == 宏扩展
 
-#tip-box(title: "Tip")[ 宏信息需要加`-g3` ]
+#tip-block(title: "Tip")[ 宏信息需要加`-g3` ]
 
 `#define MAX (9988)`
 - `macro expand MAX`
@@ -388,11 +388,11 @@ ptype /o <类型名/变量名> # 显示类型的内存布局
 - `shell free`/`!free`
 - `!ping www.baidu.com`
 
-#tip-box(title: "Tip")[ gdb调试到一半的时候，并不想退出，想看一下外部的环境。 ]
+#tip-block(title: "Tip")[ gdb调试到一半的时候，并不想退出，想看一下外部的环境。 ]
 
 === 管道(pipe)过滤
 
-#tip-box(title: "Tip")[
+#tip-block(title: "Tip")[
   - `i functions` => 输出很多
   - `pipe / | i functions | `
 ]

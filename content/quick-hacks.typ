@@ -98,11 +98,11 @@
   ]
 ]
 
-#note-box(title: "为什么要用 g*？")[
+#note-block(title: "为什么要用 g*？")[
   如果你在查看一段代码，光标在一个变量名 `user` 上，你想快速找到所有包含这个字符的函数（比如 `get_user` 或 `user_list`），直接按 `g*` 会比手动输入 `/user` 快得多。
 ]
 
-#tip-box[
+#tip-block[
   可将`?`与`q/`命令结合，调出搜索历史窗口进行交互式选择。
 ]
 
@@ -132,7 +132,7 @@ Vim 允许改变命令的“界定符”。实际上，`s/` (substitute) 中的 
 - 更优雅写法（无需转义）：`:s|/usr/local/bin|/opt/bin|g`
 
 
-#tip-box(title: "适用场景")[
+#tip-block(title: "适用场景")[
   只要是用冒号 `:` 开头的命令（如 `s`, `g`, `v`），都可以更换分隔符。
 ]
 
@@ -184,7 +184,7 @@ normal下，`<C-o>` go backward jumplist，`<C-i>` go forward jumplist
 - *`:cp[rev]`*: 跳转到上一个匹配项。
 - *`:cclose`*: 关闭 Quickfix 窗口。
 
-#tip-box(title: "借助vimgrep批量替换")[
+#tip-block(title: "借助vimgrep批量替换")[
   `:cdo s/<origin>/<subsitution>/gc` 这里`c` for confirm
 ]
 
@@ -204,7 +204,7 @@ normal下，`<C-o>` go backward jumplist，`<C-i>` go forward jumplist
 == sed
 
 ```
-sed -i 's|#import "../template.typ": \*|#import "@local/notes:0.1.0": \*|g; s|#tip-box(title: |#tip-box(title: |g; s|#example(title: |#example(title: title: |g' *.typ
+sed -i 's|#import "../template.typ": \*|#import "@local/notes:0.1.0": \*|g; s|#tip-block(title: |#tip-block(title: |g; s|#example(title: |#example(title: title: |g' *.typ
 ```
 
 == git
